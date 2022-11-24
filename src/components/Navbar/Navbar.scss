@@ -1,0 +1,33 @@
+@import '../../sass/variables';
+
+.navbar {
+  border-bottom: 2px solid $primary;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e1f5fa;
+  
+  .navbar-title > a > img {
+    height: 35px;
+    transition: transform 0.4s;
+
+    &:hover {
+      transform: rotate(15deg) rotateY(360deg);
+    }
+  }
+
+  .nav-links > .link-item {
+    padding: 7px;
+    border-radius: 10px;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    color: $primary;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: #fff;
+      background: $primary;
+    }
+  }
+}
