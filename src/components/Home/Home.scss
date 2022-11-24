@@ -1,59 +1,7 @@
 @import '../../sass/variables.scss';
 
-//* HEADER
-.header {
-  display: flex;
-  justify-content: space-between;
-  background: $background;
-  padding: 1rem;
+@import './Header.scss';
 
-  .header-left {
-    align-self: center;
-
-    .title {
-      font-weight: 700;
-      color: $primary;
-      font-size: 3em;
-    }
-
-    p {
-      margin: 1rem 0;
-      width: 90%;
-    }
-
-    .currencies-used {
-
-      span {
-        margin: 1rem 0.5rem;
-        color: #fff;
-        padding: 0.5rem;
-        border-radius: 10px;
-        background: $secondary;
-      }
-
-      ul {
-        display: flex;
-        list-style-type: none;
-
-        li > img {
-          margin: 1rem 0.5rem;
-          height: 50px;
-          transition: transform 0.3s;
-
-          &:hover {
-            transform: scale(1.1);
-          }
-        }
-      }
-    }
-  }
-
-  .header-right {
-    border-radius: 50%;
-    img {
-      height: 500px;
-    }
-    align-self: center;
-    justify-self: center;
-  }
+.home-container {
+  background: #fff;
 }

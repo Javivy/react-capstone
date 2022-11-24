@@ -2,14 +2,18 @@
 
 .navbar {
   border-bottom: 2px solid $primary;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e1f5fa;
+  background: $background;
   
   .navbar-title > a > img {
-    height: 35px;
+    height: 45px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    padding: 5px;
+    background: $secondary;
     transition: transform 0.4s;
 
     &:hover {
