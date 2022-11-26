@@ -3,6 +3,7 @@ import Header from './Header';
 import AboutSection from './AboutSection';
 import './Home.scss';
 import CarouselFade from './Carousel';
+import Footer from './Footer';
 
 const Home = () => (
   <div className="home-container">
@@ -14,6 +15,7 @@ const Home = () => (
     <div className="line-separator" />
     <AboutSection />
     <CarouselFade />
+    <Footer />
   </div>
 );
 
