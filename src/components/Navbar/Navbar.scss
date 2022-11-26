@@ -35,4 +35,11 @@
       background: $primary;
     }
   }
+
+  .searcher {
+    #search-input:focus {
+      border: none;
+      outline: none;
+    }
+  }
 }
