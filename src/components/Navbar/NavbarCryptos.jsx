@@ -12,7 +12,11 @@ const Navbar = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (term === '') {
+      return alert('Please introduce a valid term');
+    }
     dispatch(searchCurrency(term));
+    return 'Fetched successfully';
   };
 
   const resetHandler = () => {
@@ -28,7 +32,7 @@ const Navbar = () => {
       </div>
       <div className="searcher">
         <form onSubmit={submitHandler}>
-          <input value={term} onChange={(e) => setTerm(e.target.value)} className="p-2 pr-5 rounded" style={{ border: '1px solid #ccc' }} type="search" id="search-input" placeholder="Search" />
+          <input onKeyDown={(e) => (e.key === 'Enter' ? submitHandler : setTerm(e.target.value))} value={term} onChange={(e) => setTerm(e.target.value)} className="p-2 pr-5 rounded" style={{ border: '1px solid #ccc' }} type="search" id="search-input" placeholder="Search" />
           <button className="rounded-pill p-2 mx-2 bg-white " style={{ border: '1px solid #ccc' }} type="submit">
             <FontAwesomeIcon style={{ color: '#666' }} icon={icon({ name: 'search', style: 'solid' })} />
           </button>

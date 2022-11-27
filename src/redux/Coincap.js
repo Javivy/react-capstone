@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchCurrencies = createAsyncThunk(
   'currencies/fetchCurrencies',
   async () => {
-    const response = await fetch('https://api.coincap.io/v2/assets/');
+    const response = await fetch('https://api.coincap.io/v2/assets?limit=25');
     const currencies = await response.json();
     return currencies;
   },
@@ -49,17 +49,26 @@ const currenciesSlice = createSlice({
       .addCase(searchCurrency.fulfilled, (state, action) => {
         state.status = 'succeeded';
         const { data } = action.payload;
-        const arr = [{
-          id: data.rank,
-          name: data.name,
-          symbol: data.symbol,
-          price: data.priceUsd,
-          volume24h: data.volumeUsd24Hr,
-          supply: data.supply,
-          maxSupply: data.maxSupply,
-        }];
 
-        state.currencies = arr;
+        if (!action.payload.error) {
+          const arr = [{
+            id: data.rank,
+            name: data.name,
+            symbol: data.symbol,
+            price: data.priceUsd,
+            volume24h: data.volumeUsd24Hr,
+            supply: data.supply,
+            maxSupply: data.maxSupply,
+          }];
+          state.currencies = arr;
+        } else {
+          const arr = [{
+            name: action.payload.error,
+            id: 1,
+          }];
+
+          state.currencies = arr;
+        }
       });
   },
 });
