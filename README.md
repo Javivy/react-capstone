@@ -74,6 +74,7 @@
 - [Cryptos website](https://cryptos-javivy.netlify.app/)
 - [Video](https://www.loom.com/share/f715262d258245a1b5cc2ab0da6a3388)
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
