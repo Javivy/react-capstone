@@ -7,8 +7,6 @@ import NavbarCryptos from '../Navbar/NavbarCryptos';
 const Cryptos = () => {
   const currenciesData = useSelector((store) => store.currencies);
 
-  console.log(currenciesData.currencies);
-
   return (
     <>
       <NavbarCryptos />

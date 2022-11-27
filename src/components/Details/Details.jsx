@@ -6,7 +6,6 @@ import NavbarDetails from '../Navbar/NavbarDetails';
 const Details = () => {
   const location = useLocation();
   const { state } = location;
-  console.log(state);
 
   return (
     <>
