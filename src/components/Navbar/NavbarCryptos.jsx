@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+/* eslint-disable no-alert */
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchCurrencies, searchCurrency } from '../../redux/Coincap';
