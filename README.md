@@ -177,7 +177,7 @@ feel free to give it a star if you like it ⭐️.
 
 > Give credit to everyone who inspired your codebase.
 
-N/A
+(Original Design by Nelson Sakwa)[https://www.behance.net/sakwadesignstudio]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
