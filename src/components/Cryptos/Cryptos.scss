@@ -1,4 +1,4 @@
-@import '../../sass/variables';
+@use '../../sass/variables' as v;
 
 .cryptos-container {
   display: grid;
@@ -11,7 +11,7 @@
 
     &:hover {
       text-decoration: underline;
-      background: $secondary !important;
+      background: v.$secondary !important;
       color: #444 !important;
     }
   }
