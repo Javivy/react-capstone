@@ -47,7 +47,6 @@
       ul {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
         list-style-type: none;
         padding: 0;
 
@@ -91,6 +90,10 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        ul {
+          justify-content: center;
+        }
       }
     }
 
