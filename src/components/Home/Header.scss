@@ -8,9 +8,12 @@
 
   .header-right {
     border-radius: 50%;
+    overflow: hidden;
+    width: 100%;
 
     img {
-      height: 500px;
+      height: 100%;
+      width: 100%;
     }
 
     align-self: center;
@@ -32,7 +35,7 @@
     }
 
     .currencies-used {
-      span {
+      .span {
         margin: 1rem 0.5rem;
         color: #444;
         padding: 0.5rem;
@@ -43,6 +46,8 @@
 
       ul {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         list-style-type: none;
         padding: 0;
 
@@ -80,11 +85,19 @@
         text-align: center;
         margin-bottom: 3rem;
       }
+
+      .currencies-used {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     .header-right {
       img {
-        height: 300px;
+        height: 100%;
+        width: 100%;
       }
     }
   }

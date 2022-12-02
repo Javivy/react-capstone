@@ -13,9 +13,9 @@ const Header = () => (
         on the world&apos;s leading Desktop, Mobile and Hardware crypto website.
       </p>
       <div className="currencies-used">
-        <span>
+        <p className="span">
           We work with these cryptos and more!
-        </span>
+        </p>
         <ul>
           <li>
             <img src={require('../../assets/btc-logo.png')} alt="bitcoin logo" />

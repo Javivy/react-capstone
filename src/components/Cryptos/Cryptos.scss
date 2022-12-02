@@ -3,7 +3,7 @@
 .cryptos-container {
   display: grid;
   grid-auto-rows: 15rem;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 50%));
 
   .crypto-link {
     text-decoration: none;
