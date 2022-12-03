@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import store from './redux/ConfigureStore';
 import App from './App';
 
-describe('Test the Reservations', () => {
-  test('Test the App component', () => {
+describe('Test the Crytos', () => {
+  test('Test the Cryptos Page', () => {
     render(
       <Provider store={store}>
         <App />
@@ -15,15 +15,31 @@ describe('Test the Reservations', () => {
     expect(cryptosPage).toBeInTheDocument();
   });
 
-  test('Renders the cryptos page', () => {
+  test('Renders a Search for a Cryptocurrency', () => {
     render(
       <Provider store={store}>
         <App />
       </Provider>,
     );
-    fireEvent.click(screen.getByText('Cryptos'));
+    const cryptosPage = screen.getByText('Cryptos');
+    fireEvent.click(cryptosPage);
     setTimeout(() => {
-      expect(screen.getByText('Bitcoin')).toBeInTheDocument();
+      const searchBar = screen.getByPlaceholderText('text');
+      fireEvent.change(searchBar, { target: { value: 'bitcoin' } });
+      fireEvent.keyPress(searchBar, { key: 'Enter' });
+      expect(screen.getByText('bitcoin')).toBeInTheDocument();
+    }, 3000);
+  });
+
+  test('Renders the Reset button', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    );
+    fireEvent.click(screen.getByText('Reset'));
+    setTimeout(() => {
+      expect(screen.getByText('Ethereum')).toBeInTheDocument();
     }, 3000);
   });
 
