@@ -1,0 +1,48 @@
+@import '../../sass/variables.scss';
+
+.footer {
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+
+    .link {
+      text-align: start;
+      background: none;
+      border: none;
+      padding: 0.4rem 0;
+      color: #00535e;
+
+      &:hover {
+        color: #008496;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .footer-item {
+    .footer-title {
+      color: $primary;
+      font-weight: bold;
+    }
+
+    p {
+      width: 60%;
+    }
+
+    .social-links {
+      li {
+        padding: 0 0.3rem;
+
+        button {
+          font-size: 1.5em;
+          color: #00535e;
+          transition: color 0.4s;
+
+          &:hover {
+            color: #008496;
+          }
+        }
+      }
+    }
+  }
+}

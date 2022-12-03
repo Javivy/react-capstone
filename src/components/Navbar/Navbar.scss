@@ -1,0 +1,45 @@
+@use '../../sass/variables' as v;
+
+.navbar {
+  border-bottom: 2px solid v.$primary;
+  padding: 0.5rem 1rem !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: v.$background;
+
+  .navbar-title > a > img {
+    height: 45px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    padding: 5px;
+    background: v.$secondary;
+    transition: transform 0.4s;
+
+    &:hover {
+      transform: rotate(15deg) rotateY(360deg);
+    }
+  }
+
+  .nav-links > .link-item {
+    padding: 7px;
+    border-radius: 10px;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    color: v.$primary;
+    transition: color 0.2s, background 0.2s;
+    font-weight: bold;
+
+    &:hover {
+      color: #fff;
+      background: v.$primary !important;
+    }
+  }
+
+  .searcher {
+    #search-input:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}

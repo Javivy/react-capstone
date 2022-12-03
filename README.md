@@ -72,6 +72,8 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Cryptos website](https://cryptos-javivy.netlify.app/)
+- [Video](https://www.loom.com/share/f715262d258245a1b5cc2ab0da6a3388)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -175,7 +177,7 @@ feel free to give it a star if you like it ⭐️.
 
 > Give credit to everyone who inspired your codebase.
 
-N/A
+(Original Design by Nelson Sakwa)[https://www.behance.net/sakwadesignstudio]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

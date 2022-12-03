@@ -1,0 +1,107 @@
+@import '../../sass/variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background: $background;
+  padding: 1rem;
+
+  .header-right {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100%;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+
+    align-self: center;
+    justify-self: center;
+  }
+
+  .header-left {
+    align-self: center;
+
+    .title {
+      font-weight: 700;
+      color: $primary;
+      font-size: 3em;
+    }
+
+    p {
+      margin: 1rem 0;
+      width: 90%;
+    }
+
+    .currencies-used {
+      .span {
+        margin: 1rem 0.5rem;
+        color: #444;
+        padding: 0.5rem;
+        border-radius: 10px;
+        background: $secondary;
+        font-weight: bold;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        padding: 0;
+
+        li > img {
+          margin: 1rem 0.5rem;
+          height: 50px;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .title {
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .currencies-used {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        ul {
+          justify-content: center;
+        }
+      }
+    }
+
+    .header-right {
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

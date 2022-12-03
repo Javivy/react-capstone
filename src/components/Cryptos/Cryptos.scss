@@ -1,0 +1,18 @@
+@use '../../sass/variables' as v;
+
+.cryptos-container {
+  display: grid;
+  grid-auto-rows: 15rem;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 50%));
+
+  .crypto-link {
+    text-decoration: none;
+    transition: all 0.3s;
+
+    &:hover {
+      text-decoration: underline;
+      background: v.$secondary !important;
+      color: #444 !important;
+    }
+  }
+}
