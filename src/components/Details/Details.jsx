@@ -16,7 +16,7 @@ const Details = () => {
         </p>
         <p className="symbol">
           <span>Symbol: </span>
-          {state.state.symbol}
+          <span className="text-uppercase">{state.state.symbol}</span>
         </p>
         <p className="price">
           <span>Price: </span>
@@ -27,8 +27,8 @@ const Details = () => {
           {state.state.supply}
         </p>
         <p>
-          <span>Max Supply: </span>
-          {state.state.maxSupply}
+          <span>Total Volume: </span>
+          {state.state.totalVolume}
         </p>
         <p className="volume">
           <span>Volume 24h: </span>
