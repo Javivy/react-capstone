@@ -21,16 +21,19 @@ const Cryptos = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
               >
-                <motion.img alt="coin-icon" src={currency.image} />
-                <div>
-                  <h3 className="">{currency.name}</h3>
-                  <span className="text-uppercase">{currency.symbol}</span>
-                  <p>
-                    {
-                    Number(currency.price).toFixed(5)
-                    }
-                    $
-                  </p>
+                <motion.img className="card-img-icon" alt="coin-icon" src={currency.image} />
+                <div className="card-details d-flex rounded-4 align-items-center flex-column justify-content-center">
+                  <motion.img className="card-img-bg" alt="coin-bg" src={currency.image} />
+                  <div className="card-details-texts">
+                    <h3 className="">{currency.name}</h3>
+                    <span className="text-uppercase rounded-pill bg-secondary p-2 text-white mb-2">{currency.symbol}</span>
+                    <p className="mt-2">
+                      {
+                      Number(currency.price).toFixed(5)
+                      }
+                      $
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             </Link>
