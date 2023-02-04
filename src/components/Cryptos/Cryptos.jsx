@@ -1,13 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Cryptos.scss';
 import NavbarCryptos from '../Navbar/NavbarCryptos';
 import PaginationComponent from './PaginationComponent';
+import { fetchCurrencies } from '../../redux/Coincap';
 
 const Cryptos = () => {
   const currenciesData = useSelector((store) => store.currencies);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrencies());
+  }, []);
 
   return (
     <>
