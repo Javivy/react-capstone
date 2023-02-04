@@ -4,12 +4,13 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(17rem, 33.33%));
+  background-image: url('../../assets/background-cryptos.jpg');
 
   .crypto-link {
     text-decoration: none;
     transition: all 0.3s;
     position: relative;
-    margin: 4rem 1rem 0 1rem !important;
+    margin: 4rem 1rem 2rem 1rem !important;
     text-align: center;
     height: 15rem;
 
@@ -37,8 +38,8 @@
       .card-img-bg {
         rotate: 30deg;
         position: absolute;
-        opacity: 0;
-        transform: scale(0);
+        opacity: 0.1;
+        transform: scale(0.7);
         top: -22%;
         right: -10%;
         height: 346px;

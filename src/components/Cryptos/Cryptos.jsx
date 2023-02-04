@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Cryptos.scss';
 import NavbarCryptos from '../Navbar/NavbarCryptos';
+import PaginationComponent from './PaginationComponent';
 
 const Cryptos = () => {
   const currenciesData = useSelector((store) => store.currencies);
@@ -40,6 +41,7 @@ const Cryptos = () => {
           ))
         }
       </div>
+      <PaginationComponent />
     </>
   );
 };

@@ -18,6 +18,16 @@ export const searchCurrency = createAsyncThunk(
   },
 );
 
+export const changePage = createAsyncThunk(
+  'currencies/changePage',
+  async (currentPage) => {
+    const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${currentPage}&sparkline=false`);
+    const currencies = await response.json();
+    console.log(currencies);
+    return currencies;
+  },
+);
+
 const currenciesSlice = createSlice({
   name: 'currencies',
   initialState: {
@@ -70,6 +80,21 @@ const currenciesSlice = createSlice({
 
           state.currencies = arr;
         }
+      })
+      .addCase(changePage.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const arr = action.payload.map((currency) => ({
+          id: currency.id,
+          name: currency.name,
+          symbol: currency.symbol,
+          price: currency.current_price,
+          volume24h: currency.market_cap_change_24h,
+          supply: currency.total_supply,
+          totalVolume: currency.total_volume,
+          image: currency.image,
+        }));
+
+        state.currencies = arr;
       });
   },
 });
