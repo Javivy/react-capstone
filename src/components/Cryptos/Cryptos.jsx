@@ -19,7 +19,7 @@ const Cryptos = () => {
   return (
     <>
       <NavbarCryptos />
-      <div className="cryptos-container bg-secondary pt-5">
+      <div className="cryptos-container bg-secondary">
         {
           currenciesData.currencies.map((currency) => (
             <Link className="crypto-link bg-white m-2 rounded-4 d-flex align-items-center" to="/details" key={currency.id} state={{ state: currency }}>
@@ -29,7 +29,7 @@ const Cryptos = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
               >
-                <motion.img className="card-img-icon" alt="coin-icon" src={currency.image} />
+                <motion.img className="card-img-icon" alt="coin-icon" src={currency.image} layoutId={currency.name} />
                 <div className="card-details d-flex rounded-4 align-items-center flex-column justify-content-center">
                   <motion.img className="card-img-bg" alt="coin-bg" src={currency.image} />
                   <div className="card-details-texts">
