@@ -1,12 +1,15 @@
 @use '../../sass/variables' as v;
 
 .navbar {
-  border-bottom: 2px solid v.$primary;
   padding: 0.5rem 1rem !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: v.$background;
+  background: #ccc;
+  position: fixed !important;
+  width: 100%;
+  top: 0px;
+  z-index: 4;
 
   .navbar-title > a > img {
     height: 45px;

@@ -2,17 +2,68 @@
 
 .cryptos-container {
   display: grid;
-  grid-auto-rows: 15rem;
-  grid-template-columns: repeat(auto-fill, minmax(8rem, 50%));
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 33.33%));
+  background-image: url('../../assets/background-cryptos.jpg');
+  padding-top: 5rem;
 
   .crypto-link {
     text-decoration: none;
     transition: all 0.3s;
+    position: relative;
+    margin: 4rem 1rem 2rem 1rem !important;
+    text-align: center;
+    height: 15rem;
+
+    .card-img-icon {
+      position: absolute;
+      top: -50px;
+      height: 100px;
+      padding: 8px;
+      border-radius: 50%;
+      background: #ccc !important;
+      transition: border-radius 0.3s, background 0.3s, transform 0.3s;
+      z-index: 2;
+    }
+
+    .card-details {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+
+      .card-details-texts {
+        z-index: 2;
+      }
+
+      .card-img-bg {
+        rotate: 30deg;
+        position: absolute;
+        opacity: 0.1;
+        transform: scale(0.7);
+        top: -22%;
+        right: -10%;
+        height: 346px;
+        transition: opacity 0.3s, transform 0.3s;
+      }
+
+      &:hover {
+        .card-img-bg {
+          opacity: 0.2;
+          transform: scale(1.1);
+        }
+      }
+    }
 
     &:hover {
-      text-decoration: underline;
       background: v.$secondary !important;
       color: #444 !important;
+
+      .card-img-icon {
+        border-radius: 30%;
+        background: #fff !important;
+        transform: scale(1.2);
+      }
     }
   }
 }

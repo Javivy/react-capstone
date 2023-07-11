@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchCurrencies = createAsyncThunk(
   'currencies/fetchCurrencies',
   async () => {
-    const response = await fetch('https://api.coincap.io/v2/assets?limit=25');
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false');
     const currencies = await response.json();
     return currencies;
   },
@@ -15,6 +15,16 @@ export const searchCurrency = createAsyncThunk(
     const response = await fetch(`https://api.coincap.io/v2/assets/${term}`);
     const currency = await response.json();
     return currency;
+  },
+);
+
+export const changePage = createAsyncThunk(
+  'currencies/changePage',
+  async (currentPage) => {
+    const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${currentPage}&sparkline=false`);
+    const currencies = await response.json();
+    console.log(currencies);
+    return currencies;
   },
 );
 
@@ -31,14 +41,15 @@ const currenciesSlice = createSlice({
       })
       .addCase(fetchCurrencies.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        const arr = action.payload.data.map((currency) => ({
-          id: currency.rank,
+        const arr = action.payload.map((currency) => ({
+          id: currency.id,
           name: currency.name,
           symbol: currency.symbol,
-          price: currency.priceUsd,
-          volume24h: currency.volumeUsd24Hr,
-          supply: currency.supply,
-          maxSupply: currency.maxSupply,
+          price: currency.current_price,
+          volume24h: currency.market_cap_change_24h,
+          supply: currency.total_supply,
+          totalVolume: currency.total_volume,
+          image: currency.image,
         }));
 
         state.currencies = arr;
@@ -69,6 +80,21 @@ const currenciesSlice = createSlice({
 
           state.currencies = arr;
         }
+      })
+      .addCase(changePage.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const arr = action.payload.map((currency) => ({
+          id: currency.id,
+          name: currency.name,
+          symbol: currency.symbol,
+          price: currency.current_price,
+          volume24h: currency.market_cap_change_24h,
+          supply: currency.total_supply,
+          totalVolume: currency.total_volume,
+          image: currency.image,
+        }));
+
+        state.currencies = arr;
       });
   },
 });
