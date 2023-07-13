@@ -88,6 +88,7 @@ const Details = () => {
               <option value="14">7D</option>
               <option value="30" selected>1 M</option>
               <option value="360">1 Y</option>
+              <option value="max">All</option>
             </select>
           </div>
           <div id="chart" />
