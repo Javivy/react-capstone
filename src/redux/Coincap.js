@@ -37,6 +37,18 @@ export const changePage = createAsyncThunk(
   },
 );
 
+export const changeVsCurrency = createAsyncThunk(
+  'currencies/changeVsCurrency',
+  async (currentCurrency, vsCurrency) => {
+    // https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=eur&days=30&interval=daily
+    const URL = `https://api.coingecko.com/api/v3/coins/${currentCurrency}/market_chart?vs_currency=${vsCurrency}&days=30&interval=daily`;
+    console.log(URL, vsCurrency);
+    const response = await fetch(URL);
+    const currency = await response.json();
+    return currency;
+  },
+);
+
 const currenciesSlice = createSlice({
   name: 'currencies',
   initialState: {
@@ -107,6 +119,12 @@ const currenciesSlice = createSlice({
         state.currencies = arr;
       })
       .addCase(fetchChart.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const arr = action.payload.prices;
+
+        state.chart_data = arr;
+      })
+      .addCase(changeVsCurrency.fulfilled, (state, action) => {
         state.status = 'succeeded';
         const arr = action.payload.prices;
 

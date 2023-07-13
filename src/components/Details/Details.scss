@@ -12,6 +12,11 @@
     height: 80%;
     margin: 35px auto;
 
+    #chart {
+      height: 100%;
+      width: 100%;
+    }
+
     .options {
       select {
         margin: 10px;

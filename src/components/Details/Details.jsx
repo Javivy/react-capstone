@@ -4,69 +4,55 @@ import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Details.scss';
 import { motion } from 'framer-motion';
-import ApexCharts from 'apexcharts';
+import * as echarts from 'echarts';
 import NavbarDetails from '../Navbar/NavbarDetails';
-import { fetchChart } from '../../redux/Coincap';
+import { fetchChart, changeVsCurrency } from '../../redux/Coincap';
 
 const Details = () => {
   const chartData = useSelector((store) => store.currencies.chart_data);
-  console.log(chartData);
   const location = useLocation();
   const dispatch = useDispatch();
   const { state } = location;
 
   useEffect(() => {
     dispatch(fetchChart(state.state.id));
+  }, []);
 
+  useEffect(() => {
+    const chart = document.getElementById('chart');
+    const myChart = echarts.init(chart);
     const options = {
-      chart: {
-        type: 'area',
-        animations: {
-          enabled: true,
-          easing: 'easeinout',
-          speed: 1500,
-          animatedGradually: {
-            enabled: true,
-          },
-          dynamicAnimation: {
-            enabled: true,
-            speed: 1400,
-          },
-        },
-        height: '100%',
-        zoom: {
-          enabled: false,
-        },
+      xAxis: {
+        type: 'time',
       },
-      stroke: {
-        curve: 'smooth',
+      yAxis: {
+        type: 'value',
       },
-      series: [
-        {
-          name: 'Price',
-          data: chartData,
-        },
-      ],
-      xaxis: {
-        type: 'datetime',
+      series: {
+        data: chartData,
+        type: 'line',
+        smooth: true,
+        animationDuration: 100,
       },
-      yaxis: {
-        opposite: true,
+      tooltip: {
+        trigger: 'axis'
       },
-      theme: {
-        palette: 'palette4',
-      },
-      dataLabels: {
-        enabled: false,
-      },
+      title: {
+        text: `${state.state.name} (${state.state.symbol.toUpperCase()}) Chart`
+      }
     };
 
-    const chart = new ApexCharts(
-      document.querySelector('#chart'),
-      options,
-    );
-    chart.render();
-  }, []);
+    myChart.setOption(options);
+  }, [chartData])
+
+  const handleChangeCurrency = (currency) => {
+    dispatch(changeVsCurrency(state.state.id, currency));
+    console.log(chartData, state.state.id, currency);
+  }
+
+  const handleChangeTemporality = (time) => {
+    console.log(time);
+  }
 
   return (
     <>
@@ -86,7 +72,7 @@ const Details = () => {
             <label htmlFor="vs_currency">
               Select Currency:
             </label>
-            <select name="vs_currency">
+            <select name="vs_currency" onChange={(e) => {handleChangeCurrency(e.target.value)}}>
               <option value="usd">USD</option>
               <option value="eur">EUR</option>
               <option value="jpy">JPY</option>
@@ -94,7 +80,7 @@ const Details = () => {
             <label htmlFor="vs_currency">
               Select temporality:
             </label>
-            <select name="days">
+            <select name="days" onChange={(e) => {handleChangeTemporality(e.target.value)}}>
               <option value="14">7D</option>
               <option value="30">1M</option>
               <option value="360">1Y</option>
