@@ -1,17 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Details.scss';
 import { motion } from 'framer-motion';
 import * as echarts from 'echarts';
 import NavbarDetails from '../Navbar/NavbarDetails';
-import { fetchChart, changeVsCurrency } from '../../redux/Coincap';
+import { fetchChart, changeVsCurrency, changeTemporality } from '../../redux/Coincap';
 
 const Details = () => {
   const chartData = useSelector((store) => store.currencies.chart_data);
   const location = useLocation();
   const dispatch = useDispatch();
+  const [currentCurrency, setCurrency] = useState('usd');
+  const [currentTemporality, setTemporality] = useState('30');
   const { state } = location;
 
   useEffect(() => {
@@ -33,6 +35,7 @@ const Details = () => {
         type: 'line',
         smooth: true,
         animationDuration: 100,
+        showSymbol: false
       },
       tooltip: {
         trigger: 'axis'
@@ -46,12 +49,13 @@ const Details = () => {
   }, [chartData])
 
   const handleChangeCurrency = (currency) => {
-    dispatch(changeVsCurrency(state.state.id, currency));
-    console.log(chartData, state.state.id, currency);
+    dispatch(changeVsCurrency({ID: state.state.id, CURRENCY_SELECTED: currency, SELECTED_TIME: currentTemporality}));
+    setCurrency(currency)
   }
 
   const handleChangeTemporality = (time) => {
-    console.log(time);
+    dispatch(changeTemporality({ID: state.state.id, CURRENCY_SELECTED: currentCurrency, SELECTED_TIME: time}));
+    setTemporality(time);
   }
 
   return (
@@ -73,7 +77,7 @@ const Details = () => {
               Select Currency:
             </label>
             <select name="vs_currency" onChange={(e) => {handleChangeCurrency(e.target.value)}}>
-              <option value="usd">USD</option>
+              <option value="usd" selected>USD</option>
               <option value="eur">EUR</option>
               <option value="jpy">JPY</option>
             </select>
@@ -82,8 +86,8 @@ const Details = () => {
             </label>
             <select name="days" onChange={(e) => {handleChangeTemporality(e.target.value)}}>
               <option value="14">7D</option>
-              <option value="30">1M</option>
-              <option value="360">1Y</option>
+              <option value="30" selected>1 M</option>
+              <option value="360">1 Y</option>
             </select>
           </div>
           <div id="chart" />
