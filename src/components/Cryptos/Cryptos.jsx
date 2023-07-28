@@ -14,6 +14,7 @@ const Cryptos = () => {
 
   useEffect(() => {
     dispatch(fetchCurrencies());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

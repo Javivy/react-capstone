@@ -18,6 +18,7 @@ const Details = () => {
   useEffect(() => {
     dispatch(fetchChart(state.state.id));
     dispatch(fetchCurrencies());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const Details = () => {
     };
 
     myChart.setOption(options);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chartData]);
 
   const handleChangeCurrency = (currency) => {
