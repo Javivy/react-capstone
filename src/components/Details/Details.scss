@@ -4,10 +4,32 @@
   display: flex;
   height: 100vh;
   padding-top: 2rem;
-  background: #444;
+  background: #eee;
 
   .details-container {
     padding: 1rem;
+    width: 100%;
+    height: 80%;
+    margin: 35px auto;
+
+    #chart {
+      height: 100%;
+      width: 100%;
+    }
+
+    .options {
+      select {
+        margin: 10px;
+        border: 1px solid #444;
+        border-radius: 5px;
+
+        
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
   }
 
   .img-container {
@@ -18,8 +40,8 @@
     flex-wrap: wrap;
     padding: 2rem;
     background: #e1e1e1;
-    border-top-right-radius: 5rem;
-    border-bottom-right-radius: 5rem;
+    // border-top-right-radius: 5rem;
+    // border-bottom-right-radius: 5rem;
     width: fit-content;
 
     .name {

@@ -9,10 +9,28 @@ export const fetchCurrencies = createAsyncThunk(
   },
 );
 
+export const fetchAllCurrencies = createAsyncThunk(
+  'currencies/fetchAllCurrencies',
+  async () => {
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false');
+    const currencies = await response.json();
+    return currencies;
+  },
+);
+
 export const searchCurrency = createAsyncThunk(
   'currencies/searchCurrency',
   async (term) => {
-    const response = await fetch(`https://api.coincap.io/v2/assets/${term}`);
+    const response = await fetch(`https://api.coingecko.com/api/v3/coins/${term}`);
+    const currency = await response.json();
+    return currency;
+  },
+);
+
+export const fetchChart = createAsyncThunk(
+  'currencies/fetchChart',
+  async (term) => {
+    const response = await fetch(`https://api.coingecko.com/api/v3/coins/${term}/market_chart?vs_currency=usd&days=30&interval=daily`);
     const currency = await response.json();
     return currency;
   },
@@ -28,10 +46,32 @@ export const changePage = createAsyncThunk(
   },
 );
 
+export const changeVsCurrency = createAsyncThunk(
+  'currencies/changeVsCurrency',
+  async (object) => {
+    const URL = `https://api.coingecko.com/api/v3/coins/${object.ID}/market_chart?vs_currency=${object.CURRENCY_SELECTED}&days=${object.SELECTED_TIME}&interval=daily`;
+    const response = await fetch(URL);
+    const currency = await response.json();
+    return currency;
+  },
+);
+
+export const changeTemporality = createAsyncThunk(
+  'currencies/changeTemporality',
+  async (object) => {
+    const URL = `https://api.coingecko.com/api/v3/coins/${object.ID}/market_chart?vs_currency=${object.CURRENCY_SELECTED}&days=${object.SELECTED_TIME}&interval=daily`;
+    console.log(URL, object);
+    const response = await fetch(URL);
+    const currency = await response.json();
+    return currency;
+  },
+);
+
 const currenciesSlice = createSlice({
   name: 'currencies',
   initialState: {
     currencies: [],
+    chart_data: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -59,27 +99,21 @@ const currenciesSlice = createSlice({
       })
       .addCase(searchCurrency.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        const { data } = action.payload;
 
-        if (!action.payload.error) {
-          const arr = [{
-            id: data.rank,
-            name: data.name,
-            symbol: data.symbol,
-            price: data.priceUsd,
-            volume24h: data.volumeUsd24Hr,
-            supply: data.supply,
-            maxSupply: data.maxSupply,
-          }];
-          state.currencies = arr;
-        } else {
-          const arr = [{
-            name: action.payload.error,
-            id: 1,
-          }];
+        const data = action.payload;
 
-          state.currencies = arr;
-        }
+        const arr = [{
+          id: data.id,
+          name: data.name,
+          symbol: data.symbol,
+          price: data.current_price,
+          volume24h: data.market_cap_change_24h,
+          supply: data.total_supply,
+          totalVolume: data.total_volume,
+          image: data.image.large,
+        }]
+
+        state.currencies = arr;
       })
       .addCase(changePage.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -95,6 +129,24 @@ const currenciesSlice = createSlice({
         }));
 
         state.currencies = arr;
+      })
+      .addCase(fetchChart.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const arr = action.payload.prices;
+
+        state.chart_data = arr;
+      })
+      .addCase(changeVsCurrency.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const arr = action.payload.prices;
+
+        state.chart_data = arr;
+      })
+      .addCase(changeTemporality.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const arr = action.payload.prices;
+
+        state.chart_data = arr;
       });
   },
 });
