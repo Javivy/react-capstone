@@ -6,7 +6,7 @@ import './Details.scss';
 import { motion } from 'framer-motion';
 import * as echarts from 'echarts';
 import NavbarDetails from '../Navbar/NavbarDetails';
-import { fetchChart, changeVsCurrency, changeTemporality } from '../../redux/Coincap';
+import { fetchChart, changeVsCurrency, changeTemporality, fetchCurrencies } from '../../redux/Coincap';
 
 const Details = () => {
   const chartData = useSelector((store) => store.currencies.chart_data);
@@ -18,6 +18,7 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(fetchChart(state.state.id));
+    dispatch(fetchCurrencies());
   }, []);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const Details = () => {
     };
 
     myChart.setOption(options);
-  }, [chartData])
+  }, [chartData]);
 
   const handleChangeCurrency = (currency) => {
     dispatch(changeVsCurrency({ID: state.state.id, CURRENCY_SELECTED: currency, SELECTED_TIME: currentTemporality}));
