@@ -71,7 +71,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Cryptos website](https://cryptos-javivy.netlify.app/)
+- [Cryptos website](https://cryptos-website-javivy.netlify.app/)
 - [Video](https://www.loom.com/share/f715262d258245a1b5cc2ab0da6a3388)
 
 
